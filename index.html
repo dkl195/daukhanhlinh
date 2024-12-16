@@ -1,126 +1,56 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Simple Calculator</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-        }
-
-        .container {
-            background: white;
-            padding: 20px;
-            border-radius: 5px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            text-align: center;
-        }
-
-        input {
-            width: 200px;
-            padding: 10px;
-            margin: 10px 0;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-        }
-
-        button {
-            padding: 10px 15px;
-            margin: 5px;
-            cursor: pointer;
-            border: none;
-            border-radius: 4px;
-            background-color: #c01587;
-            color: white;
-            transition: background-color 0.3s;
-        }
-
-        button:hover {
-            background-color: #890f99;
-        }
-
-        h2 {
-            margin-top: 20px;
-        }
-        h1 {
-            color:brown
-        }
-
-        .error {
-            color: red;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Simple Calculator</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="container">
-        <h1> Calculator</h1>
-        <input type="text" id="num1" placeholder="Enter first number">
-        <input type="text" id="num2" placeholder="Enter second number">
-        
-        <div>
-            <button onclick="calculate('+')">+</button>
-            <button onclick="calculate('-')">-</button>
-            <button onclick="calculate('*')">*</button>
-            <button onclick="calculate('/')">/</button>
-        </div>
-        
-        <h2 id="result">Result: </h2>
+  <div class="calculator">
+    <h2> Calculator</h2>
+    <input type="number" id="number1" placeholder="Enter the first number">
+    <input type="number" id="number2" placeholder="Enter the second number">
+    <div>
+      <button onclick="calculate('+')">+</button>
+      <button onclick="calculate('-')">-</button>
+      <button onclick="calculate('*')">*</button>
+      <button onclick="calculate('/')">/</button>
     </div>
-
-    <script>
-        function calculate(operation) {
-            const num1 = document.getElementById('num1').value;
-            const num2 = document.getElementById('num2').value;
-            const resultDisplay = document.getElementById('result');
-            
-            
-            resultDisplay.innerText = 'Result: ';
-
-            if (num1 === '' || num2 === '') {
-                resultDisplay.innerText = 'Error: Both fields must be filled.';
-                resultDisplay.classList.add('error');
-                return;
-            }
-
-            const number1 = parseFloat(num1);
-            const number2 = parseFloat(num2);
-
-            let result;
-
-            switch (operation) {
-                case '+':
-                    result = number1 + number2;
-                    break;
-                case '-':
-                    result = number1 - number2;
-                    break;
-                case '*':
-                    result = number1 * number2;
-                    break;
-                case '/':
-                    if (number2 === 0) {
-                        resultDisplay.innerText = 'Error: Division by zero is not allowed.';
-                        resultDisplay.classList.add('error');
-                        return;
-                    }
-                    result = number1 / number2;
-                    break;
-                default:
-                    resultDisplay.innerText = 'Error: Invalid operation.';
-                    resultDisplay.classList.add('error');
-                    return;
-            }
-
-            resultDisplay.innerText = 'Result: ' + result;
-            resultDisplay.classList.remove('error');
-        }
-    </script>
+    <div id="result"></div>
+  </div>
+  <script>
+    function calculate(operation) {
+      const num1 = document.getElementById('number1').value;
+      const num2 = document.getElementById('number2').value;
+      const resultDiv = document.getElementById('result');
+      if (num1 === '' || num2 === '') {
+        resultDiv.innerText = "Both inputs must not be empty.";
+        return;
+      }
+      const number1 = parseFloat(num1);
+      const number2 = parseFloat(num2);
+      if (operation === '/' && number2 === 0) {
+        resultDiv.innerText = "Cannot divide by zero.";
+        return;
+      }
+      let result;
+      switch (operation) {
+        case '+':
+          result = number1 + number2;
+          break;
+        case '-':
+          result = number1 - number2;
+          break;
+        case '*':
+          result = number1 * number2;
+          break;
+        case '/':
+          result = number1 / number2;
+          break;
+      }
+      resultDiv.innerText = `Result: ${result}`;
+    }
+  </script>
 </body>
 </html>
