@@ -1,0 +1,39 @@
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    margin: 0;
+    padding: 20px;
+    background-color: #fafafa;
+}
+
+#main-header {
+    background-color: #c54141;
+    padding: 20px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+    margin-top: 20px;
+}
+
+th, td {
+    padding: 12px;
+    border: 1px solid #ddd;
+    text-align: left;
+}
+
+.highlight {
+    background-color: #ffffd0;
+    padding: 10px;
+}
+
+th {
+    background-color: #d4a6a6;
+}
+
+tr:hover {
+    background-color: #f9f9f9;
+}
